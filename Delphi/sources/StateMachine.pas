@@ -28,7 +28,6 @@ type
     function AddTranstition(AEvent: E; ATarget: TState<S, E, C>;
       ATransitionType: TTransitionType): TTransition<S, E, C>;
 
-
     function GetEventTranstitions(AEvent: E): TObjectList<TTransition<S,E,C>>;
     property StateId: S read FStateId;
   end;

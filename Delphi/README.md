@@ -240,3 +240,23 @@ Action和状态的行为通常是不同的概念。
 
 
 ## 7. 关于异常处理(❌)
+
+
+
+# 开发过程遇到的问题
+
+## 1. 关于TCondition 和 TAction
+
+由于Delphi不像Java那样具有极强的灵活性：
+
+```java
+private Action<StateMachineTest.States, StateMachineTest.Events, Context> doAction() {
+    return (from, to, event, ctx)->{
+        System.out.println("from:"+from+" to:"+to+" on:"+event+" condition:" + ctx.getCondition());
+    };
+}
+```
+
+上面这段代码利用lambda表达式来简化显示创建一个类来实现相应的接口的过程，所以可以使用一个函数来代表一个接口的实现过程！使用 Lambda 表达式时，Java 编译器会自动推断出 `Action` 接口的实现，而你不需要显式地写出一个 `ActionImpl` 类。Lambda 表达式已经将行为与接口的实现绑定在一起。
+
+但是Delphi怎么可能像Java那样直接这样写呢？显然不能，如果完全按照Colo框架实现，对于每一个Contion 以及Action 都需要一个对应的实现类来实现这个接口！所以关于这个Condition以及 Action如何传递进去还有待商榷！
