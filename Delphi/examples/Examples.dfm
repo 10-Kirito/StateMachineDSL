@@ -116,7 +116,7 @@ object Demo: TDemo
       Font.Style = []
       ParentFont = False
     end
-    object shpEnd: TShape
+    object shpStopped: TShape
       Left = 160
       Top = 176
       Width = 65
@@ -134,17 +134,18 @@ object Demo: TDemo
       Pen.Width = 2
       Shape = stCircle
     end
-    object shpStart: TShape
+    object shpIdle: TShape
       Left = 16
       Top = 50
       Width = 65
       Height = 65
       HelpType = htKeyword
+      Brush.Color = clRed
       Pen.Color = clMedGray
       Pen.Width = 2
       Shape = stCircle
     end
-    object shpStop: TShape
+    object shpPaused: TShape
       Left = 16
       Top = 178
       Width = 65

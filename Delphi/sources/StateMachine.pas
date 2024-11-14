@@ -243,6 +243,7 @@ var
   LTransitionList: TObjectList<TTransition<S, E>>;
   LTransition: TTransition<S, E>;
 begin
+  Result := nil;
   LState := GetState(ASource);
   LTransitionList := LState.GetEventTranstitions(AEvent);
 
@@ -255,7 +256,7 @@ begin
   ///   用户没有设置相应的状态转移条件，一个事件对于一个状态，只能有一个结果状态)
   for LTransition in LTransitionList do
   begin
-    if LTransition.GetCondition = nil then
+    if not Assigned(LTransition.Condition) then
        Result := LTransition
     else if LTransition.Condition() then
     begin
@@ -263,6 +264,9 @@ begin
       Exit;
     end;
   end;
+
+
+
 end;
 
 { TStateMachine<S, E>.TTransition<S, E> }
