@@ -2,8 +2,8 @@ object Demo: TDemo
   Left = 0
   Top = 0
   Caption = 'Demo'
-  ClientHeight = 598
-  ClientWidth = 277
+  ClientHeight = 471
+  ClientWidth = 265
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,29 +13,13 @@ object Demo: TDemo
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   TextHeight = 15
-  object btnBegin: TButton
-    Left = 8
-    Top = 8
-    Width = 113
-    Height = 49
-    Caption = #21551#21160#29366#24577#26426
-    TabOrder = 0
-  end
-  object btnStop: TButton
-    Left = 144
-    Top = 8
-    Width = 113
-    Height = 49
-    Caption = #20572#27490' '
-    TabOrder = 1
-  end
   object grpEvents: TGroupBox
     Left = 8
-    Top = 120
+    Top = 8
     Width = 249
     Height = 137
     Caption = 'Events'
-    TabOrder = 2
+    TabOrder = 0
     object btnEvStart: TButton
       Left = 11
       Top = 24
@@ -43,6 +27,7 @@ object Demo: TDemo
       Height = 33
       Caption = 'Start'
       TabOrder = 0
+      OnClick = btnEvStartClick
     end
     object btnPause: TButton
       Left = 11
@@ -51,6 +36,7 @@ object Demo: TDemo
       Height = 33
       Caption = 'Pause'
       TabOrder = 1
+      OnClick = btnPauseClick
     end
     object btnResume: TButton
       Left = 136
@@ -59,6 +45,7 @@ object Demo: TDemo
       Height = 33
       Caption = 'Resume'
       TabOrder = 2
+      OnClick = btnResumeClick
     end
     object btnEvStop: TButton
       Left = 136
@@ -67,15 +54,16 @@ object Demo: TDemo
       Height = 33
       Caption = 'Stop'
       TabOrder = 3
+      OnClick = btnEvStopClick
     end
   end
   object grpStatus: TGroupBox
     Left = 8
-    Top = 288
+    Top = 167
     Width = 249
     Height = 297
     Caption = 'Status'
-    TabOrder = 3
+    TabOrder = 1
     object lblPaused: TLabel
       Left = 16
       Top = 249
@@ -105,7 +93,7 @@ object Demo: TDemo
     object lblStart: TLabel
       Left = 36
       Top = 117
-      Width = 33
+      Width = 32
       Height = 28
       Caption = 'Idle'
       Font.Charset = DEFAULT_CHARSET

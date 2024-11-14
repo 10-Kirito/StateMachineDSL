@@ -260,3 +260,23 @@ private Action<StateMachineTest.States, StateMachineTest.Events, Context> doActi
 上面这段代码利用lambda表达式来简化显示创建一个类来实现相应的接口的过程，所以可以使用一个函数来代表一个接口的实现过程！使用 Lambda 表达式时，Java 编译器会自动推断出 `Action` 接口的实现，而你不需要显式地写出一个 `ActionImpl` 类。Lambda 表达式已经将行为与接口的实现绑定在一起。
 
 但是Delphi怎么可能像Java那样直接这样写呢？显然不能，如果完全按照Colo框架实现，对于每一个Contion 以及Action 都需要一个对应的实现类来实现这个接口！所以关于这个Condition以及 Action如何传递进去还有待商榷！
+
+## 2. TCondition以及TAction的类型修改为`TProc<Boolean>`
+
+为什么要将其删除？
+
+- Delphi语言特性不如Java那样灵活(换句话说，哪一个语言也没有Java灵活，就凭那个一个函数就可以对一个接口实现匿名实现这一个操作，服了)。如果依旧按照Cola实现的那个状态机，这样Delphi的笨拙会导致使用这个状态机的时候需要对TCondition以及TAction分别一一进行实现；
+- 其二原因是上下文参数Context是真没有办法将其像Java那样在相应的TAction当中调用，如果Delphi存在特化语言特性的话，可能还可以特化出一个特定的类型，但是Delphi连特化都没有，这样如何实现呢？
+
+```java
+private Action<States, Events, Context> doAction() {
+    return (from, to, event, ctx) -> {
+        System.out.println(
+            ctx.operator + " is operating " + ctx.entityId + " from:" + from + " to:" + to + " on:" + event);
+    };
+}
+```
+
+## 3. 删除上下文参数Context
+
+感觉没啥用，因为上下文参数全部都保存在状态机外部的Control类当中，状态机的作用仅仅是状态流转！

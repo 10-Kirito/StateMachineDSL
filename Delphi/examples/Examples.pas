@@ -7,13 +7,15 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, StateMachine, StateEventExamples;
 
 type
+  Events = (evtStart, evtStop, evtResume, evtPause);
+
+  States = (stIdle, stRunning, stPaused, stStopped);
+
   TDemo = class(TForm)
     shpStart: TShape;
     shpEnd: TShape;
     shpRunning: TShape;
     shpStop: TShape;
-    btnBegin: TButton;
-    btnStop: TButton;
     lblStart: TLabel;
     lblRunning: TLabel;
     lblPaused: TLabel;
@@ -26,9 +28,13 @@ type
     grpStatus: TGroupBox;
     procedure FormDestroy(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure btnEvStartClick(Sender: TObject);
+    procedure btnResumeClick(Sender: TObject);
+    procedure btnPauseClick(Sender: TObject);
+    procedure btnEvStopClick(Sender: TObject);
   private
-    FSMBuilder: TStateMachineBuilder<States, Events, TCustomContext>;
-    FStateMachine: TStateMachine<States, Events, TCustomContext>;
+    FSMBuilder: TStateMachineBuilder<States, Events>;
+    FStateMachine: TStateMachine<States, Events>;
 
     /// <summary> 对相应的状态机进行配置并构建出一个相应的状态机 </summary>
     procedure InitialStateMachine;
@@ -43,9 +49,29 @@ implementation
 
 {$R *.dfm}
 
+procedure TDemo.btnEvStartClick(Sender: TObject);
+begin
+///
+end;
+
+procedure TDemo.btnEvStopClick(Sender: TObject);
+begin
+///
+end;
+
+procedure TDemo.btnPauseClick(Sender: TObject);
+begin
+///
+end;
+
+procedure TDemo.btnResumeClick(Sender: TObject);
+begin
+///
+end;
+
 procedure TDemo.FormCreate(Sender: TObject);
 begin
-  FSMBuilder := TStateMachineBuilder<States, Events, TCustomContext>.Create;
+  FSMBuilder := TStateMachineBuilder<States, Events>.Create;
 
   /// 配置状态机
   FSMBuilder.ExternalTransition(States.stIdle, States.stRunning, Events.evtStart, nil, nil);
